@@ -28,7 +28,7 @@ const formData = require('./input.json')
 
 app.post('/test', (req, res) => {
     formData.push(req.body)
-    // console.log(formData)
+    console.log(formData)
     writeToJson();
     res.json({success: true})
 })
