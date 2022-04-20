@@ -22,14 +22,18 @@ async function postFormData(e) {
   const jsonObject = {...formDataSerialised, "dateTime": current, "comment": [], "EmojiCount": [0,0,0], "gifLink":gifLink, 'id':count}
   console.log(JSON.stringify(jsonObject, null, 2))
   try{
-    const response = await fetch('https://journal-post-pl.herokuapp.com/test', {
-      method: 'POST', 
-      body: JSON.stringify(jsonObject),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const json = await response.json();
+    const options = { method: 'POST', 
+    body: JSON.stringify(jsonObject),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+
+  await fetch("https://journal-post-pl.herokuapp.com/test", options);
+    // const response = await fetch("https://journal-post-pl.herokuapp.com/test", {
+
+    // })
+    // const json = await response.json();
   }catch(e){
     console.error(e);
     alert('There was an error')
