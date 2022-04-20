@@ -34,8 +34,8 @@ async function postFormData(e) {
 
     // })
     // const json = await response.json();
-  }catch(e){
-    console.error(e);
+  }catch(err){
+    console.error(err);
     alert('There was an error')
   }
 }
