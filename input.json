@@ -1,0 +1,58 @@
+[
+  {
+    "journalTitle": "I hate this game",
+    "journalEntry": "I Effing hate this game!!!",
+    "gifSearch": "very angry",
+    "dateTime": "25/03/2022, 16:03:10",
+    "comment": [],
+    "EmojiCount": [
+      1,
+      0,
+      0
+    ],
+    "gifLink": "https://media4.giphy.com/media/iic43bLPYAAtbnb6hP/200.gif?cid=74aacfdayh2mz7fob44lr7zrcomq6ruk2hyfijtg0e0a0ts4&rid=200.gif&ct=g",
+    "id": 0
+  },
+  {
+    "journalTitle": "Alfie",
+    "journalEntry": "\nhi my name is Alfie",
+    "gifSearch": "Hello",
+    "dateTime": "08/04/2022, 13:29:42",
+    "comment": [],
+    "EmojiCount": [
+      1,
+      1,
+      3
+    ],
+    "gifLink": "https://media4.giphy.com/media/fTI9mBoWLef8k/200.gif?cid=74aacfdanbjksi3hc4ix8xbbf2mpq2hmcy6dm502pl77qza9&rid=200.gif&ct=g",
+    "id": 1
+  },
+  {
+    "journalTitle": "Test",
+    "journalEntry": "Hello",
+    "gifSearch": "Happy",
+    "dateTime": "20/04/2022, 22:07:24",
+    "comment": [],
+    "EmojiCount": [
+      0,
+      0,
+      0
+    ],
+    "gifLink": "https://media3.giphy.com/media/MeIucAjPKoA120R7sN/200.gif?cid=74aacfdamplky7o9q9ju5upojpsgheusir1bgqr8zojm5dpd&rid=200.gif&ct=g",
+    "id": 2
+  },
+  {
+    "journalTitle": "Test 2",
+    "journalEntry": "Test 2 Comment",
+    "gifSearch": "happy",
+    "dateTime": "20/04/2022, 22:08:42",
+    "comment": [],
+    "EmojiCount": [
+      0,
+      0,
+      0
+    ],
+    "gifLink": "https://media2.giphy.com/media/MdqE46HziuFJTlIwjw/200.gif?cid=74aacfdagzaepwkgqlm0fwkbki15atmq5nvq9vgpqu7p2860&rid=200.gif&ct=g",
+    "id": 3
+  }
+]
