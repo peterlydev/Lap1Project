@@ -22,20 +22,16 @@ async function postFormData(e) {
   const jsonObject = {...formDataSerialised, "dateTime": current, "comment": [], "EmojiCount": [0,0,0], "gifLink":gifLink, 'id':count}
   console.log(JSON.stringify(jsonObject, null, 2))
   try{
-    const options = { method: 'POST', 
-    body: JSON.stringify(jsonObject),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-
-  await fetch("https://journal-post-pl.herokuapp.com/test", options);
-    // const response = await fetch("https://journal-post-pl.herokuapp.com/test", {
-
-    // })
-    // const json = await response.json();
-  }catch(err){
-    console.error(err);
+    const response = await fetch('https://journal-post-pl.herokuapp.com//test', {
+      method: 'POST', 
+      body: JSON.stringify(jsonObject),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const json = await response.json();
+  }catch(e){
+    console.error(e);
     alert('There was an error')
   }
 }
@@ -250,7 +246,7 @@ function sendApiRequest() {
   console.log(userInput)
 
   const giphyApiKey = "4qsIN2L7YbHr9wkQfLXylyEPXoG0Z6nZ"
-  const giphyApiURL = `http://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${giphyApiKey}`
+  const giphyApiURL = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${giphyApiKey}`
 
   fetch(giphyApiURL).then(function(data) {
       return data.json()
