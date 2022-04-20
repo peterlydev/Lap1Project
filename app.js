@@ -4,6 +4,8 @@ const cors = require('cors')
 const fs = require('fs')
 const app = express()
 const port = process.env.PORT || 8000;
+// ----------------------------- REQUIRING THE OBJECT ARRAY FROM THE INPUT.JSON FILE --------------------------------
+const formData = require('./input.json')
 
 app.use(express.json())
 app.use(cors())
@@ -19,10 +21,6 @@ const writeToJson = () => {
         }
     )
 };
-
-// ----------------------------- REQUIRING THE OBJECT ARRAY FROM THE INPUT.JSON FILE --------------------------------
-
-const formData = require('./input.json')
 
 // ----------------------------- PUSHING THE FORM DATA FROM FRONTEND INTO FORMDATA VARIABLE AND WRITING THE FORMDATA VARIABLE BACK INTO input.json --------------------------------
 
