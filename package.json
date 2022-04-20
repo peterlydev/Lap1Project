@@ -1,27 +1,28 @@
 {
-  "name": "server",
+  "name": "lap1-heroku",
   "version": "1.0.0",
+  "description": "* Fork and Clone the Repo\r * cd into the server folder\r * Run `npm install -D cors express nodemon jest coverage` in the terminal",
   "main": "app.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "dev": "nodemon app.js",
-    "start": "node app.js",
-    "start-dev": "nodemon app.js"
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterlydev/Lap1Project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "coverage": "^0.4.1",
-    "dayjs": "^1.11.0",
-    "express": "*",
-    "jest": "^27.5.1",
-    "nodemon": "^2.0.15"
+  "bugs": {
+    "url": "https://github.com/peterlydev/Lap1Project/issues"
   },
+  "homepage": "https://github.com/peterlydev/Lap1Project#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "body-parser": "^1.20.0"
+    "express": "^4.17.3"
   },
-  "description": ""
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
