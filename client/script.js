@@ -22,14 +22,13 @@ async function postFormData(e) {
   const jsonObject = {...formDataSerialised, "dateTime": current, "comment": [], "EmojiCount": [0,0,0], "gifLink":gifLink, 'id':count}
   console.log(JSON.stringify(jsonObject, null, 2))
   try{
-    const response = await fetch('https://journal-post-pl.herokuapp.com/test', {
+    const response = await fetch('https://salty-lake-91235.herokuapp.com/test', {
       method: 'POST', 
       body: JSON.stringify(jsonObject),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    const json = await response.json();
   }catch(e){
     console.error(e);
     alert('There was an error')
@@ -37,16 +36,12 @@ async function postFormData(e) {
 }
 
 // ----------------------------- Fetching Data from the Backend and creating a post for each item in the input.json file--------------------------------
-fetch('https://journal-post-pl.herokuapp.com/print')
+fetch('https://salty-lake-91235.herokuapp.com/print')
 .then(resp =>  resp.json())
-.then(resp=> {
-  console.log(resp)
-  createPost(resp)
-})
+.then(resp=> createPost(resp))
 
 function createPost(resp){
    resp.forEach(item => {
- 
     count++
     console.log(item.comment)
     let postList = document.querySelector('#postHere')
@@ -100,7 +95,8 @@ function createPost(resp){
                 emojiButton1.setAttribute('style', "width:100%")
                 emojiButton1.setAttribute('role', 'button')
                 emojiButton1.setAttribute('class', 'btn btn-secondary')
-                emojiButton1.setAttribute('onclick', `counterIncrease(${item.id}, 'up')`)
+                emojiButton1.setAttribute('id', `up${item.id}`)
+                emojiButton1.setAttribute('onclick', `counterIncrease(${item.id}, 'up', ${item.EmojiCount[0]})`)
                 emojiButton1.textContent=`👍 ${item.EmojiCount[0]}`
                 divCol1.appendChild(emojiButton1)
 
@@ -112,7 +108,8 @@ function createPost(resp){
                 emojiButton2.setAttribute('style', "width:100%")
                 emojiButton2.setAttribute('role', 'button')
                 emojiButton2.setAttribute('class', 'btn btn-secondary')
-                emojiButton2.setAttribute('onclick', `counterIncrease(${item.id}, 'down')`)
+                emojiButton1.setAttribute('id', `down${item.id}`)
+                emojiButton2.setAttribute('onclick', `counterIncrease(${item.id}, 'down', ${item.EmojiCount[1]})`)
                 emojiButton2.textContent=`👎 ${item.EmojiCount[1]}`
                 divCol2.appendChild(emojiButton2)
 
@@ -124,7 +121,8 @@ function createPost(resp){
                 emojiButton3.setAttribute('style', "width:100%")
                 emojiButton3.setAttribute('role', 'button')
                 emojiButton3.setAttribute('class', 'btn btn-secondary')
-                emojiButton3.setAttribute('onclick', `counterIncrease(${item.id}, 'heart')`)
+                emojiButton1.setAttribute('id', `heart${item.id}`)
+                emojiButton3.setAttribute('onclick', `counterIncrease(${item.id}, 'heart', ${item.EmojiCount[2]})`)
                 emojiButton3.textContent=`❤️ ${item.EmojiCount[2]}`
                 divCol3.appendChild(emojiButton3)
 
@@ -196,46 +194,6 @@ function createPost(resp){
               commentBtn.setAttribute('onclick', `sendComment(${item.id})`)
               commentBtnDiv.appendChild(commentBtn)
 
-//       <div id="post">       
-//         <div class="card-body">
-//             <h5 class="card-title">${item.journalTitle}</h5>
-//             <h7 class="card-title">${item.dateTime}</h7>
-//             <p class="card-text">${item.journalEntry}</p>
-//         </div>
-//         <div style="padding:0em 1em 1em 1em">  
-//             <img src="${item.gifLink}">  
-//         </div>       
-//         <div class="container">
-//             <div class="row">
-//               <div class="col text-center">
-//                 <button style="width:100%" type="button" onclick="counterIncrease('${item.id}', 'up')">&#128077; ${item.EmojiCount[0]}</button>
-//               </div>
-//               <div class="col text-center">
-//                 <button style="width:100%" onclick="counterIncrease('${item.id}', 'down')">&#128078; ${item.EmojiCount[1]}</button>
-//               </div>
-//               <div class="col text-center">
-//                 <button style="width:100%" onclick="counterIncrease('${item.id}', 'heart')">&#10084; ${item.EmojiCount[2]}</button>
-//               </div>
-//             </div>
-//         </div>  
-//         <div class="comments"> 
-//             <h2>Comments</h2>
-//             <div id="comment-box">
-//                 <p>${item.comment}</p>
-//             </div>
-//         </div> 
-//         <div class="container"> 
-//           <h2>Leave us a comment</h2>
-//           <form>
-//               <textarea id="${item.id}" placeholder="Add Your Comment" value=" " onfocus="appear(${item.journalTitle.split(" ").join("")})" onblur="clickAway(${item.journalTitle.split(" ").join("")})"></textarea>
-//               <div id="commentBtn">
-//                   <input id="submitComment" type="button" value="Comment" onclick="sendComment(${item.id})"> 
-//                   <button type="button" id="clear" onclick="clearCommentSection(${item.journalTitle.split(" ").join("")})">Cancel</button>
-//               </div> 
-//           </form>
-//         </div>
-//       </div>
- 
 postList.prepend(eachPostSection)
   }) 
 }
@@ -263,9 +221,20 @@ function sendApiRequest() {
 }
 
 // ----------------------------- counterIncrease FUNCTION WHICH SENDS INFO TO BACKEND WHEN YOU PRESS THE EMOJI BUTTON IN EACH POST --------------------------------
-function counterIncrease(id,emoji,event){
+function counterIncrease(id,emoji,count){
   // console.log('got' + journaltitle + emoji)
-  fetch('https://journal-post-pl.herokuapp.com/emojiUpdate', {
+  switch(emoji){
+    case 'up':
+      count++
+      break;
+    case 'down':
+      count++
+      break;
+    case 'heart':
+      count++
+      break;
+  }
+  fetch('https://salty-lake-91235.herokuapp.com/emojiUpdate', {
     method: 'PUT',
     body: JSON.stringify({ id: id, emoji: emoji }),
     headers: { 'Content-Type': 'application/json' },
@@ -283,11 +252,12 @@ function sendComment(id) {
     console.log(textBoxValue)
     // console.log(textBoxValue)
     // console.log(journalTitle)
-    fetch('https://journal-post-pl.herokuapp.com/comments', {
+    fetch('http://localhost:8000/comments', {
       method: 'PUT',
       body: JSON.stringify({ comment: textBoxValue, id: id, comDateTime: commentDateTime}),
       headers: { 'Content-Type': 'application/json' },
     })
+    window.location.reload()
   } else{
     alert('Please enter a comment!')
   }
